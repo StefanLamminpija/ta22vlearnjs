@@ -1,46 +1,47 @@
 <script setup>
-    import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
+import ItemList from './components/ItemList.vue';
 
-    let message = ref('Hello Vue');
-    let newItem = ref('');
-    let count = ref(0);
-    let items = reactive([
-        'Leib',
-        'Piim',
-        'Viin'
-    ]);
-    function addItem(){
-        if(newItem.value.trim() !== ''){
-            items.push(newItem.value.trim());
-        }
-        newItem.value = '';
+let message = ref('Hello Vue');
+let newItem = ref('');
+let count = ref(0);
+let i = 0;
+let items = reactive([
+    {id:i++,name:'Kommid', isDone: true},
+    {id:i++,name:'Õlu', isDone: false},
+    {id:i++,name:'Viin', isDone: true},
+]);
+function addItem() {
+    if (newItem.value.trim() !== '') {
+        items.push({id:i++,name: newItem.value.trim(), isDone: false});
     }
+    newItem.value = '';
+}
+
+const doneItems = computed(() => items.filter(item => item.isDone));
+const toDoItems = computed(() => items.filter(item => !item.isDone));
+
 </script>
 
 <template>
-
     <div class="container">
 
-        {{ count }} 
-        <button class="button is-primary" @click="count++">Count: {{ count }}</button>
-
-        <!-- <input type="text" :value="message" class="input mt-2" @input="message=$event.target.value"> -->
-
-        <input type="text" v-model="message" class="input mt-2">
-        {{ message.split('').reverse().join('') }}
-
-        <input type="text" v-model="newItem" class="input mt-2" @keydown.enter="addItem">
-
-        <button class="button is-primary" @click="addItem">Add Item</button>
+        <div class="field has-addons my-2">
+            <div class="control is-expanded">
+                <input class="input" type="text" v-model="newItem" @keydown.enter="addItem">
+            </div>
+            <div class="control">
+                <a class="button is-info" @click="addItem">
+                    Add Item
+                </a>
+            </div>
+        </div>
 
         <div class="content">
-
-            <ul>
-                <li v-for="item in items">{{ item }}</li>
-            </ul>
+            <ItemList title="All Items" :items="items"></ItemList>
+            <ItemList title="Done Items" :items="doneItems"></ItemList>
+            <ItemList title="toDo Items" :items="toDoItems"></ItemList>
             
         </div> <!-- content -->
-
     </div> <!-- container -->
-
 </template>

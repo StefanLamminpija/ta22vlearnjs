@@ -25,6 +25,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "bulma": "^0.9.4",
     "vue": "^3.3.9"
   }
 }
