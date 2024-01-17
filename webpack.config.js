@@ -14,9 +14,9 @@ module.exports = {
     static: {
         directory: path.resolve(__dirname, 'public')
     },
+    historyApiFallback: true,
     compress: true,
-    port: 3000,
-    historyApiFallback: true
+    port: 3000
   },
 
     module: {

@@ -24,7 +24,6 @@ const toDoItems = computed(() => items.filter(item => !item.isDone));
 </script>
 
 <template>
-    <div class="container">
 
         <div class="field has-addons my-2">
             <div class="control is-expanded">
@@ -43,5 +42,5 @@ const toDoItems = computed(() => items.filter(item => !item.isDone));
             <ItemList title="toDo Items" :items="toDoItems"></ItemList>
             
         </div> <!-- content -->
-    </div> <!-- container -->
+
 </template>
