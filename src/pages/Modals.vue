@@ -30,4 +30,6 @@
 import { ref } from 'vue';
 import Modal from '../components/Modal.vue';
 let isOpen = ref(false);
+let isOpen2 = ref(false);
+let isOpen3 = ref(false);
 </script>
