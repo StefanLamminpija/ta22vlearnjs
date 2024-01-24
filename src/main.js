@@ -7,10 +7,12 @@ import App from './App.vue';
 
 import ToDo from './pages/ToDo.vue';
 import Modals from './pages/Modals.vue';
+import ChuckNorris from './pages/ChuckNorris.vue'
 
 const routes = [
     { path: '/', component: ToDo, name: 'Todo' },
     { path: '/modals', component: Modals, name: 'Modals' },
+    { path: '/ChuckNorris', component: ChuckNorris, name: 'ChuckNorris' },
   ]
 
 const router = createRouter({
